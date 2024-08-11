@@ -1,80 +1,73 @@
-// ******************* Lecture-3 error-handling Middlewares, router middleware , in-bulit middleware ***********************
+// ******************* Lecture-4 CURD OPAREETION :- POST ,GET ***********************
 const  express = require('express')
-const server = express() 
 const morgan = require('morgan')
+const app = express()
+const users = require('./friends.json')
 
-// server.use(morgan('dev'))
-server.use(morgan('tiny'))
-// server.use(morgan('combine'))
-
-// ------------------LOGGER----------------------------------------
-// const loggerFun = (req , res , next) => {
-//   console.log(req.ip , req.url , req.method); 
-//   next()
-// }
-// server.use(loggerFun)
+app.use(morgan('dev'))
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
 
-// ----------------------------------------------------------------
-// =>when express is not provided to middlewaer that time people use to body-parse
-// =>body-parse use to express 4.x down version and 4 up verson express provide middleware
-
-// => four types of the middleware 
-// 1) Application-level middleware  //apply all the end points
-// 2) Error-handling  middleware   // apply only fix endpoint
-// 3) Built-in middleware          //bulit in middeleware there 3 types in this
-//           =>1.express.json
-//           =>2.express.urlencoded
-//           =>3.express.static
-// 4) Third-party middleware       // many  thirdparty like cookie / morgen ....
-
-
-// ----------------------------------------------------------------
-//------------------------ in-bulid middleware----------
-
-server.use(express.json())   //check to postman->body->raw->jsondata
-server.use(express.urlencoded({extended:false}))  ///  ody -> x-ww-form-encoded -> key-value
-server.use('/hello' , express.static('public'))  
-//=> public dir->index.html file run
-
-
-//------------APPLICATION LEVEL MIDDELWARE FUNCTION----------------
-const myFun = (req,res,next) => {
-  console.log(req.body);
-  next()
-//   if(req.query.age >= '18'){
-//     console.log('SUCESS');
-//   }
-//   else{
-//     res.json({message:"Sorry......... "})
-//   }
-}
-// server.use(myFun)       //application
-
-
-
-// GET METHOD => data getting to server
-server.get('/', (req ,res) => {
-  res.write('Welcome to Express Server')
-  res.end()
+app.get("/",(req,res)=>{
+  res.send("welcome to express server")
 })
 
-// -----------------ROUTER LEVEL MIDDELEWARE -------------------------
-server.get("/login",myFun ,(req,res) =>{
-  res.write('Welcome to login page')
-  res.end()
+//CRUD
+//create 8user
+app.post("/users" ,(req,res)=>{
+  // console.log(req.body);
+  users.push(req.body)
+  res.json({message:"User added sucessfully......"})  
 })
 
-// POST METHOD 
-server.post("/" , (req,res) => {
-  // res.write('Welcome to post Method')
-  res.send('<h1>POST METHOD</h1>')
+// READ -Get All users
+// -> first of all get run and than post method run to localhost/user => reply aaded msg after that open new tab in post man and get localhost/user => display aaed person and than single argemnet  localhost/user/11
+app.get("/users",(req,res) =>{
+  res.json()
 })
 
-server.listen(8000 , () => {
+//Get single User
+app.get("/users/:id" , (req,res) =>{
+  let id = +req.params.id;
+  let item = users.find((user)=> user.is === id)
+  res.json(item)
+})
+
+// Replace Data - PUT
+app.put("/users/:id",(req,res)=>{
+  let id = +req.params.id;
+  let userIndex = users.findIndex((item) => item.id === id)
+  users.splice(userIndex,1 , req.body)
+  res.json({message : "User Replaced Success"})
+})
+
+
+// Update Data - PATCH
+app.patch("/users/:id",(req,res)=>{
+  let id = +req.params.id;
+  let userIndex = users.findIndex((item) => item.id === id)
+  let user = users[userIndex]
+  users.splice(userIndex,1 , {...user ,...req.body})
+  res.json({message : "User update Success"})
+})
+
+
+//Delete Data - DELETE
+app.delete("/users/:id",(req,res)=>{
+  let id = +req.params.id;
+  let userIndex = users.findIndex((item) => item.id === id)
+  let user = users[userIndex]
+  users.splice(userIndex,1)
+  res.json({message : "User delete Success"})
+})
+
+
+
+app.listen(8000 , () => {
   console.log('Server start at http://localhost:8000');
-  
 })
+
 
 
 //git checkout -b branch_name (create New branch)
