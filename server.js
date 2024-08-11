@@ -60,3 +60,8 @@ server.listen(8000 , () => {
   
 })
 
+
+//git checkout -b branch_name (create New branch)
+//git add .
+//git commit -m "your commit"
+//git push -u origin branch_name
