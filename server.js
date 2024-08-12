@@ -1,75 +1,55 @@
-// ******************* Lecture-4 CURD OPAREETION :- POST ,GET ***********************
+// ********************* Product Pectise ************************************
 const  express = require('express')
 const morgan = require('morgan')
 const app = express()
-const users = require('./friends.json')
+const products = require("./product.json")
 
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
-
 app.get("/",(req,res)=>{
-  res.send("welcome to express server")
+  res.send("welcome to express product prectice task.....")
 })
 
-//CRUD
-//create 8user
-app.post("/users" ,(req,res)=>{
-  // console.log(req.body);
-  users.push(req.body)
-  res.json({message:"User added sucessfully......"})  
+app.post('/products',(req,res)=>{
+  products.push(req.body)
+  res.json({message:"Product added succesfully......"})
 })
 
-// READ -Get All users
-// -> first of all get run and than post method run to localhost/user => reply aaded msg after that open new tab in post man and get localhost/user => display aaed person and than single argemnet  localhost/user/11
-app.get("/users",(req,res) =>{
-  res.json(users)
+app.get("/products",(req,res) =>{
+  res.json(products)
 })
 
-//Get single User
-app.get("/users/:id" , (req,res) =>{
-  let id = +req.params.id;
-  let item = users.find((user)=> user.id === id)
+app.get("/products/:id" ,(req,res) => {
+  let id = +req.params.id
+  let item = products.find((product) => product.id === id)
   res.json(item)
 })
 
-// Replace Data - PUT
-app.put("/users/:id",(req,res)=>{
-  let id = +req.params.id;
-  let userIndex = users.findIndex((item) => item.id === id)
-  users.splice(userIndex,1 , req.body)
-  res.json({message : "User Replaced Success"})
+app.put("/products/:id" ,(req,res) => {
+  let id = +req.params.id
+  let productIndex = products.findIndex((item) => item.id === id)
+  products.splice(productIndex,1,req.body)
+  res.json({message : "Product Replaced Successfully....."})
 })
 
-
-// Update Data - PATCH
-app.patch("/users/:id",(req,res)=>{
-  let id = +req.params.id;
-  let userIndex = users.findIndex((item) => item.id === id)
-  let user = users[userIndex]
-  users.splice(userIndex,1 , {...user ,...req.body})
-  res.json({message : "User update Success"})
+app.patch("/products/:id" ,(req,res) => {
+  let id = +req.params.id
+  let productIndex = products.findIndex((item) => item.id === id)
+  let product = products[productIndex]
+  products.splice(productIndex,1, {...product , ...req.body})
+  res.json({message : "Product Updated Successfully....."})
 })
 
-
-//Delete Data - DELETE
-app.delete("/users/:id",(req,res)=>{
-  let id = +req.params.id;
-  let userIndex = users.findIndex((item) => item.id === id)
-  users.splice(userIndex,1)
-  res.json({message : "User delete Success"})
+app.delete("/products/:id" ,(req,res) => {
+  let id = +req.params.id
+  let productIndex = products.findIndex((item) => item.id === id)
+  products.splice(productIndex,1)
+  res.json({message : "Product Delete Successfully....."})
 })
 
-
-
-app.listen(8000 , () => {
-  console.log('Server start at http://localhost:8000');
+app.listen(4000,() => {
+  console.log(`server start at http://localhost:4000`);
+  
 })
-
-
-
-//git checkout -b branch_name (create New branch)
-//git add .
-//git commit -m "your commit"
-//git push -u origin branch_name
