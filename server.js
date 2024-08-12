@@ -24,13 +24,13 @@ app.post("/users" ,(req,res)=>{
 // READ -Get All users
 // -> first of all get run and than post method run to localhost/user => reply aaded msg after that open new tab in post man and get localhost/user => display aaed person and than single argemnet  localhost/user/11
 app.get("/users",(req,res) =>{
-  res.json()
+  res.json(users)
 })
 
 //Get single User
 app.get("/users/:id" , (req,res) =>{
   let id = +req.params.id;
-  let item = users.find((user)=> user.is === id)
+  let item = users.find((user)=> user.id === id)
   res.json(item)
 })
 
@@ -57,7 +57,6 @@ app.patch("/users/:id",(req,res)=>{
 app.delete("/users/:id",(req,res)=>{
   let id = +req.params.id;
   let userIndex = users.findIndex((item) => item.id === id)
-  let user = users[userIndex]
   users.splice(userIndex,1)
   res.json({message : "User delete Success"})
 })
