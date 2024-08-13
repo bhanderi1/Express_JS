@@ -15,8 +15,10 @@ app.get("/",(req,res)=>{
   res.send("welcome to express server")
 })
 
+// user Routes
 app.use('/user',userRoutes)
 
+// Product Routes
 app.use('/product',productRoutes)
 
 app.listen(8000 , () => {
