@@ -1,55 +1,31 @@
-// ********************* Product Pectise ************************************
+// ******************* Lecture-4 CURD OPAREETION :- POST ,GET ***********************
 const  express = require('express')
 const morgan = require('morgan')
 const app = express()
-const products = require("./product.json")
+const userRoutes = require('./routes/user.routes')
+const productRoutes = require('./routes/product.routes')
+
 
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+
 app.get("/",(req,res)=>{
-  res.send("welcome to express product prectice task.....")
+  res.send("welcome to express server")
 })
 
-app.post('/products',(req,res)=>{
-  products.push(req.body)
-  res.json({message:"Product added succesfully......"})
+app.use('/user',userRoutes)
+
+app.use('/product',productRoutes)
+
+app.listen(8000 , () => {
+  console.log('Server start at http://localhost:8000');
 })
 
-app.get("/products",(req,res) =>{
-  res.json(products)
-})
 
-app.get("/products/:id" ,(req,res) => {
-  let id = +req.params.id
-  let item = products.find((product) => product.id === id)
-  res.json(item)
-})
 
-app.put("/products/:id" ,(req,res) => {
-  let id = +req.params.id
-  let productIndex = products.findIndex((item) => item.id === id)
-  products.splice(productIndex,1,req.body)
-  res.json({message : "Product Replaced Successfully....."})
-})
-
-app.patch("/products/:id" ,(req,res) => {
-  let id = +req.params.id
-  let productIndex = products.findIndex((item) => item.id === id)
-  let product = products[productIndex]
-  products.splice(productIndex,1, {...product , ...req.body})
-  res.json({message : "Product Updated Successfully....."})
-})
-
-app.delete("/products/:id" ,(req,res) => {
-  let id = +req.params.id
-  let productIndex = products.findIndex((item) => item.id === id)
-  products.splice(productIndex,1)
-  res.json({message : "Product Delete Successfully....."})
-})
-
-app.listen(4000,() => {
-  console.log(`server start at http://localhost:4000`);
-  
-})
+//git checkout -b branch_name (create New branch)
+//git add .
+//git commit -m "your commit"
+//git push -u origin branch_name
