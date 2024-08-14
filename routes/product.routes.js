@@ -4,14 +4,14 @@ const { addNewProduct, getAllProduct, getProduct, replaceProduct, updateProduct,
 
 productRotes.post('/',addNewProduct)
 
-productRotes.get("/",getAllProduct)
+// productRotes.get("/",getAllProduct)
 
-productRotes.get("/:id" ,getProduct)
+// productRotes.get("/:id" ,getProduct)
 
-productRotes.put("/:id" ,replaceProduct)
+// productRotes.put("/:id" ,replaceProduct)
 
-productRotes.patch("/:id" , updateProduct)
+// productRotes.patch("/:id" , updateProduct)
 
-productRotes.delete("/:id" , deleteProduct)
+// productRotes.delete("/:id" , deleteProduct)
 
 module.exports = productRotes
