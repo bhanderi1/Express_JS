@@ -2,12 +2,17 @@ const mongoose = require("mongoose")
 
 // mongoose Schema
 const userSchema = mongoose.Schema({
-    firstName : String,   //short hand property
+    // firstName : String,   //short hand property
+    firstName:{
+        type:String,
+    },
     lastName : {
         type: String,
+        unique:true,
     },
     email:{
-        type: String
+        type: String,
+        unique:true,
     },
     age:{
         type : Number

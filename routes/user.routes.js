@@ -7,10 +7,10 @@ const { addNewUser, getAllUsers, getUser, replaceUser, updateUser, deleteUser } 
 userRoutes.post("/",addNewUser)
 
 // READ -Get All users
-// userRoutes.get("/", getAllUsers)
+userRoutes.get("/", getAllUsers)
 
 // //Get single User
-// userRoutes.get("/:id", getUser)
+userRoutes.get("/get-user", getUser)
 
 // // Replace Data - PUT
 // userRoutes.put("/:id", replaceUser)
