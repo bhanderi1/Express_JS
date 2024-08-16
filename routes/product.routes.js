@@ -4,9 +4,9 @@ const { addNewProduct, getAllProduct, getProduct, replaceProduct, updateProduct,
 
 productRotes.post('/',addNewProduct)
 
-// productRotes.get("/",getAllProduct)
+productRotes.get("/",getAllProduct)
 
-// productRotes.get("/:id" ,getProduct)
+productRotes.get("/get-product" ,getProduct)
 
 // productRotes.put("/:id" ,replaceProduct)
 

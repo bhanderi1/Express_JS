@@ -30,7 +30,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
    try {
-      let user = await User.findOne({ firstName : req.query.fristName })
+      let user = await User.findOne({ firstName : req.query.firstName })
       // let user =await User.findOne({_id: req.query.userId})
       // let user = await User.findById(req.query.userId)
       // console.log(user);

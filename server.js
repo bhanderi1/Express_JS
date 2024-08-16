@@ -1,4 +1,4 @@
-// ******************* Lecture-4 CURD OPAREETION :- POST ,GET ***********************
+// ******************* Lecture-8 (create api)***********************
 const express = require('express')
 const morgan = require('morgan')
 const app = express()

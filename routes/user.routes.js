@@ -12,12 +12,10 @@ userRoutes.get("/", getAllUsers)
 // //Get single User
 userRoutes.get("/get-user", getUser)
 
-// // Replace Data - PUT
-// userRoutes.put("/:id", replaceUser)
+// Replace Data - PUT
+// userRoutes.put("/", replaceUser)
 
-// // Update Data - PATCH
-// userRoutes.patch("/:id", updateUser)
-
-// userRoutes.delete("/:id", deleteUser)
+// userRoutes.delete("/", deleteUser)
 
 module.exports = userRoutes;
+
