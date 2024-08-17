@@ -1,4 +1,4 @@
-// ******************* Lecture-8 (create api)***********************
+// ******************* Lecture-8 (create api) post,get,put, delete***********************
 const express = require('express')
 const morgan = require('morgan')
 const app = express()

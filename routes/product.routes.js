@@ -8,10 +8,8 @@ productRotes.get("/",getAllProduct)
 
 productRotes.get("/get-product" ,getProduct)
 
-// productRotes.put("/:id" ,replaceProduct)
+productRotes.put("/" ,updateProduct)
 
-// productRotes.patch("/:id" , updateProduct)
-
-// productRotes.delete("/:id" , deleteProduct)
+productRotes.delete("/" , deleteProduct)
 
 module.exports = productRotes

@@ -9,13 +9,14 @@ userRoutes.post("/",addNewUser)
 // READ -Get All users
 userRoutes.get("/", getAllUsers)
 
-// //Get single User
+// Get single User
 userRoutes.get("/get-user", getUser)
 
-// Replace Data - PUT
-// userRoutes.put("/", replaceUser)
+// update Data - PUT
+userRoutes.put("/", updateUser)
 
-// userRoutes.delete("/", deleteUser)
+//delete user
+userRoutes.delete("/", deleteUser)
 
 module.exports = userRoutes;
 

@@ -42,24 +42,32 @@ exports.getProduct =async (req, res) => {
   }
 }
 
-// exports.replaceProduct = (req,res) => {
-//     let id = +req.params.id
-//     let productIndex = products.findIndex((item) => item.id === id)
-//     products.splice(productIndex,1,req.body)
-//     res.json({message : "Product Replaced Successfully....."})
-//   }
+exports.updateProduct = async(req,res)=>{
+  try{
+    let product = await Products.findById(req.query.productId)
+    if(!user){
+      returnres.status(404).json({message:"Product not found.."})
+    }
+    product = await Products.updateOne({_id:product.id},req.body , {new:true})
+    res.status(202).json({product , message:'Product updated successfully...'})
+  }
+  catch(err){
+    console.log(err);
+    req.status(500).json({message:"Internal server Error"})
+  }
+}
 
-//   exports.updateProduct = (req,res) => {
-//     let id = +req.params.id
-//     let productIndex = products.findIndex((item) => item.id === id)
-//     let product = products[productIndex]
-//     products.splice(productIndex,1, {...product , ...req.body})
-//     res.json({message : "Product Updated Successfully....."})
-//   }
-
-//   exports.deleteProduct = (req,res) => {
-//     let id = +req.params.id
-//     let productIndex = products.findIndex((item) => item.id === id)
-//     products.splice(productIndex,1)
-//     res.json({message : "Product Delete Successfully....."})
-//   }
+exports.deleteProduct = async(req,res)=>{
+  try{
+    let product =await Products.findById(req.query.productId)
+    if(!product){
+      return res.status(404).json({message:"Product not found"})
+    }
+    product= await Products.findOneAndDelete({_id:product._id})
+    res.status(200).json({message:"Product Delete SuccessFully..."})
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).json({message:"Internal server Error"})
+  }
+}
