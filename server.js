@@ -1,4 +1,4 @@
-// ******************* Lecture-8 (create api) post,get,put, delete***********************
+// ******************* Lecture-8 =***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
