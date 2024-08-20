@@ -1,10 +1,12 @@
-// ******************* Lecture-10 = soft delete data***********************
+// ******************* Lecture-10 online server altas conneting ***********************
+require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const mongoose = require("mongoose")
 const userRoutes = require('./routes/user.routes')
 const productRoutes = require('./routes/product.routes')
+const port = process.env.PORT;
 
 
 app.use(morgan('dev'))
@@ -16,26 +18,26 @@ app.get("/", (req, res) => {
   res.send("welcome to express server")
 })
 
-
 // user Routes
 app.use('/api/user', userRoutes)
 
 // Product Routes
 app.use('/api/product', productRoutes)
 
-app.listen(3000, () => {
+app.listen(port, () => {
   // Database connection -> mongoose function
   mongoose
-    .connect("mongodb://127.0.0.1:27017/node")
+    .connect(process.env.MONGO_URI)
     .then(() => {
       console.log("Database connection established sucess...")
     })
     .catch((err) => console.log(err));
-console.log('Server start at http://localhost:3000');
+console.log(`Server start at http://localhost:${port}`);
 })
 
 
 
-//npm i dotenv  =>intalling
-
-
+//git checkout -b branch_name (create New branch)
+//git add .
+//git commit -m "your commit"
+//git push -u origin branch_name
