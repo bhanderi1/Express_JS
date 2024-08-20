@@ -1,4 +1,4 @@
-// ******************* Lecture-8 =***********************
+// ******************* Lecture-10 = online server conneting atlas ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
@@ -37,7 +37,6 @@ console.log(`Server start at http://localhost:${port}`);
 
 
 
-//git checkout -b branch_name (create New branch)
-//git add .
-//git commit -m "your commit"
-//git push -u origin branch_name
+//npm i dotenv  =>intalling
+
+
