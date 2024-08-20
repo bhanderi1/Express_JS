@@ -17,6 +17,13 @@ const productSchema = mongoose.Schema({
     category:{
         type:String,
     },
-})
+    isDelete:{
+        type:Boolean,
+        default:false
+    }
+},{
+    versionkey:false,
+    timestamps:true
+});
 
 module.exports = mongoose.model('product', productSchema)

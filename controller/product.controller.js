@@ -3,7 +3,7 @@ const Products = require("../model/product.model")
 
 exports.addNewProduct = async (req, res) => {
   try {
-    const product = await Products.findOne({title:req.body.title})
+    let product = await Products.findOne({title:req.body.title , isDelete:false})
     if (product) {
       return res.status(400).json({ message: "Product already exist..." })
     }
@@ -19,7 +19,7 @@ exports.addNewProduct = async (req, res) => {
 
 exports.getAllProduct = async(req, res) => {
   try{
-    let products =await Products.find()
+    let products =await Products.find(({isDelete:false}))
     res.status(200).json(products)
   }
   catch(err){
@@ -30,7 +30,7 @@ exports.getAllProduct = async(req, res) => {
 
 exports.getProduct =async (req, res) => {
   try{
-    let product = await Products.findOne({price:req.query.price})
+    let product = await Products.findById(req.query.price)
     if(!product){
       return res.status(404).json({message:"Product Not Found"})
     }
@@ -59,11 +59,11 @@ exports.updateProduct = async(req,res)=>{
 
 exports.deleteProduct = async(req,res)=>{
   try{
-    let product =await Products.findById(req.query.productId)
+    let product =await Products.findOne({_id:req.query.productId, isDelete:false})
     if(!product){
       return res.status(404).json({message:"Product not found"})
     }
-    product= await Products.findOneAndDelete({_id:product._id})
+    product= await Products.findByIdAndUpdate(product._id, {isDelete:true},{new:true})
     res.status(200).json({message:"Product Delete SuccessFully..."})
   }
   catch(err){

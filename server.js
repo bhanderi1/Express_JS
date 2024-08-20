@@ -1,4 +1,4 @@
-// ******************* Lecture-10 online server altas conneting ***********************
+// ******************* Lecture-10 online conneting server to atlas ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
