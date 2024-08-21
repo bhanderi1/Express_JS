@@ -8,11 +8,16 @@ const userSchema = mongoose.Schema({
     },
     lastName : {
         type: String,
-        unique:true,
     },
     email:{
         type: String,
         unique:true,
+    },
+    password:{
+       type:String
+    },
+    profileImage:{
+       type:String,
     },
     age:{
         type : Number
@@ -31,7 +36,7 @@ const userSchema = mongoose.Schema({
         default:false
     }
 },{
-    versionkey:false,
+    versionKey:false,
     timestamps:true
 });
 

@@ -22,7 +22,7 @@ const productSchema = mongoose.Schema({
         default:false
     }
 },{
-    versionkey:false,
+    versionKey:false,
     timestamps:true
 });
 
