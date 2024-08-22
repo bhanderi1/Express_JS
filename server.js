@@ -1,4 +1,4 @@
-// ******************* Lecture-12  cerate a token gereating to the password and verifyToken  ***********************
+// ******************* Lecture-13  update profile to the user ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
