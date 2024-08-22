@@ -1,4 +1,4 @@
-// ******************* Lecture-11  user register and Login with emial ID and Password  ***********************
+// ******************* Lecture-12  cerate a token gereating to the password and verifyToken  ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
@@ -36,8 +36,13 @@ console.log(`Server start at http://localhost:${port}`);
 })
 
 
+// passport => create and genreate to the password token        =>today task prectise
+
+
+
 
 //git checkout -b branch_name (create New branch)
 //git add .
 //git commit -m "your commit"
 //git push -u origin branch_name
+
