@@ -30,7 +30,7 @@ exports.loginUser = async (req, res) => {
          return res.json({message: 'Email or password does not matched...'})
       }
       let token = await jwt.sign({userId:user._id} , process.env.JWT_SECRET)
-      // console.log(token); token genret to the console
+       console.log(token);// token genret to the console
       
       res.status(200).json({message:"Login Success...", token})
    }
@@ -44,6 +44,20 @@ exports.getProfile = async(req,res)=>{
    try{
       // res.status(200).json({message: "Show user profile"})
         res.json(req.user)
+   }
+   catch(err){
+      console.log(err);
+      res.status(500).json({message: 'Server Error'})
+   }
+}
+
+
+
+exports.updateProfile = async(req,res) =>{
+   try{
+      let user = req.user;
+      user = await User.findByIdAndUpdate(user._id,{$set:req.body},{new:true})
+      res.status(202).json({user,message:"server Error"})
    }
    catch(err){
       console.log(err);

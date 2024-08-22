@@ -36,7 +36,10 @@ console.log(`Server start at http://localhost:${port}`);
 })
 
 
-// passport => create and genreate to the password token        =>today task prectise
+// -------------------Today task --------------------------
+// Delete User        
+//Change passWord
+//Forget passWord => otp genreate => email(nodemailer) / message
 
 
 
