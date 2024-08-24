@@ -1,4 +1,4 @@
-// ******************* Lecture-13  update profile to the user ***********************
+// ******************* Lecture-14 (image Uploading using thrid party library => multer)  ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')

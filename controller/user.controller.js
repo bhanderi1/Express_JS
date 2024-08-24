@@ -3,15 +3,19 @@ const User = require('../model/user.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-//register user
+//register user with profile image uploading
 exports.registerUser = async (req, res) => {
    try {
+      let imagePath = " "  // file not exetute path so print empty string
       let user = await User.findOne({ email: req.body.email, isDelete: false });
       if (user) {
          return res.json({ message: 'User already exist...' })
       }
+      if(req.file){
+         imagePath = req.file.path.replace(/\\/g ,"/")  // regx change path to beacuse mac and linex path does not to word this -> \\ and change using regx exprestion path change " / "
+      }
       let hashPassword = await bcrypt.hash(req.body.password, 10)
-      user = await User.create({ ...req.body, password: hashPassword })
+      user = await User.create({ ...req.body, password: hashPassword  , profileImage:imagePath})
       res.status(201).json({ user, message: 'Register success...' })
    }
    catch (err) {
@@ -87,7 +91,6 @@ exports.deleteUser = async (req, res) => {
 // task => change password 
 exports.changePassword = async (req, res) => {
    try {
-      
       let user = req.user; 
       user = await User.findById(req.user._id); 
       if (!user) {
