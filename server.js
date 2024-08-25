@@ -1,4 +1,4 @@
-// ******************* Lecture-15 (tem)  ***********************
+// ******************* Lecture-15 (Viwe localhost url in font side data using ejs and hbs)  ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
@@ -9,13 +9,16 @@ const productRoutes = require('./routes/product.routes')
 const port = process.env.PORT;
 const cors = require('cors')
 const path = require('path')
+const ejs = require('ejs')
 
-
+app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use("/public/images",express.static(path.join(__dirname, "public/images")))
+
+app.set("viwe enggine" , 'ejs')
 
 app.get("/", (req, res) => {
   res.send("welcome to express server")

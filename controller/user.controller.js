@@ -107,7 +107,7 @@ exports.changePassword = async (req, res) => {
       } 
    
       if (newPassword !== confirmPassword) { 
-        return res.status(400).json({message: "New password and confirm password do not match"}); 
+        return res.status(400).json({message:"New password and confirm password do not match"}); 
       } 
    
       const hashedNewPassword = await bcrypt.hash(newPassword, 10); 
@@ -120,9 +120,29 @@ exports.changePassword = async (req, res) => {
       res.status(500).json({ message: 'Server Error' })
    }
 }
-
-
-
 // corrent password =>corrent password
 // corrent password update operation -> new password
 // new password and comfirm password
+
+exports.userShow = async(req, res) => {
+   try{
+      // let user ={
+      //    firstName : 'sachin',
+      //    lastName : 'Tendulkar',
+      //    age: 40,
+      //    email : 'schin@text.in',
+      //    mobileNo : '1234567890',
+      //    hobbies: ['sport','music','Dance','cricket']
+      // }
+      let user = await User.findOne({firstName:req.query.name, isDelete:false})
+      if(!user){
+         return res.render('notfound.ejs')
+      }
+      res.render('student.hbs',{user})
+      // res.render('user.ejs',{user})
+   }
+   catch(err){
+      console.log(err);
+      res.status(500).json({message: 'server Error'})
+   }
+}
