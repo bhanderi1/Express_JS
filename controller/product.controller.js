@@ -44,8 +44,8 @@ exports.getProduct =async (req, res) => {
 
 exports.updateProduct = async(req,res)=>{
   try{
-    let product = await Products.findById(req.query.productId)
-    if(!user){
+    let product =await Products.findById(req.query.productId)
+    if(!product){
       returnres.status(404).json({message:"Product not found.."})
     }
     product = await Products.updateOne({_id:product.id},req.body , {new:true})
@@ -59,7 +59,7 @@ exports.updateProduct = async(req,res)=>{
 
 exports.deleteProduct = async(req,res)=>{
   try{
-    let product =await Products.findOne({_id:req.query.productId, isDelete:false})
+    let product =await Products.findById({_id:req.query.productId, isDelete:false})
     if(!product){
       return res.status(404).json({message:"Product not found"})
     }

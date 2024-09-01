@@ -9,7 +9,8 @@ const productRoutes = require('./routes/product.routes')
 const port = process.env.PORT;
 const cors = require('cors')
 const path = require('path')
-const ejs = require('ejs')
+const ejs = require('ejs');
+const cartRoutes = require("./routes/cart.routes");
 
 app.use(cors())
 app.use(morgan('dev'))
@@ -29,6 +30,7 @@ app.use('/api/user', userRoutes)
 
 // Product Routes
 app.use('/api/product', productRoutes)
+app.use('/api/cart', cartRoutes)
 
 app.listen(port, () => {
   // Database connection -> mongoose function
