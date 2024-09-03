@@ -1,4 +1,4 @@
-// ******************* Lecture-15 (Viwe localhost url in font side data using ejs and hbs)  ***********************
+// ******************* Lecture-16 (Cart model)  ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
@@ -11,6 +11,7 @@ const cors = require('cors')
 const path = require('path')
 const ejs = require('ejs');
 const cartRoutes = require("./routes/cart.routes");
+const orderRoutes = require("./routes/order.routes");
 
 app.use(cors())
 app.use(morgan('dev'))
@@ -27,10 +28,10 @@ app.get("/", (req, res) => {
 
 // user Routes
 app.use('/api/user', userRoutes)
-
 // Product Routes
 app.use('/api/product', productRoutes)
 app.use('/api/cart', cartRoutes)
+app.use('api/order', orderRoutes)
 
 app.listen(port, () => {
   // Database connection -> mongoose function
@@ -45,7 +46,7 @@ console.log(`Server start at http://localhost:${port}`);
 
 
 // -------------------Today task --------------------------
-// Delete User        
+//Delete User        
 //Change passWord
 //Forget passWord => otp genreate => email(nodemailer) / message
 
