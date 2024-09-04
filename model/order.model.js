@@ -9,7 +9,7 @@ const orderSchema = mongoose.Schema({
         {
             productId:{
                 type:mongoose.Schema.Types.ObjectId,
-                ref:'products'
+                ref:'product'
             },
             quantity:{
                 type:Number
@@ -29,4 +29,4 @@ const orderSchema = mongoose.Schema({
 }
 );
 
-module.exports = mongoose.model("orders",orderSchema)
+module.exports = mongoose.model("order",orderSchema)

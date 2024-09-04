@@ -1,4 +1,4 @@
-// ******************* Lecture-16 (Cart model)  ***********************
+// ******************* Lecture-18 (Cart model)  ***********************
 require("dotenv").config();
 const express = require('express')
 const morgan = require('morgan')
@@ -31,7 +31,7 @@ app.use('/api/user', userRoutes)
 // Product Routes
 app.use('/api/product', productRoutes)
 app.use('/api/cart', cartRoutes)
-app.use('api/order', orderRoutes)
+app.use('/api/order', orderRoutes)
 
 app.listen(port, () => {
   // Database connection -> mongoose function
@@ -44,11 +44,6 @@ app.listen(port, () => {
 console.log(`Server start at http://localhost:${port}`);
 })
 
-
-// -------------------Today task --------------------------
-//Delete User        
-//Change passWord
-//Forget passWord => otp genreate => email(nodemailer) / message
 
 
 
